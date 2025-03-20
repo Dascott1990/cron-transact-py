@@ -335,15 +335,16 @@ async def test_async_step_temp(dbos: DBOS) -> None:
 @pytest.mark.asyncio
 async def test_start_workflow(dbos: DBOS) -> None:
     @DBOS.step()
-    async def test_step(x: int) -> str:
+    async def test_step(url: str) -> str:
         async with aiohttp.ClientSession() as session:
-            async with session.get("http://example.com") as response:
+            async with session.get(url) as response:
                 return await response.text()
 
     @DBOS.workflow()
-    async def test_workflow(x: int) -> str:
-        return await test_step(x)
+    async def test_workflow(url: str) -> str:
+        return await test_step(url)
 
-    assert len(await test_workflow(1)) > 0
-    handle = DBOS.start_workflow(test_workflow, 1)
+    url = "http://example.com"
+    assert len(await test_workflow(url)) > 0
+    handle = DBOS.start_workflow(test_workflow, url)
     assert len(handle.get_result()) > 1
