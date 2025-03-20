@@ -3,6 +3,7 @@ import time
 import uuid
 from typing import Optional
 
+import aiohttp
 import pytest
 import sqlalchemy as sa
 
@@ -329,3 +330,20 @@ async def test_async_step_temp(dbos: DBOS) -> None:
         assert result == "alicestep1"
 
     assert step_counter == 1
+
+
+@pytest.mark.asyncio
+async def test_start_workflow(dbos: DBOS) -> None:
+    @DBOS.step()
+    async def test_step(x: int) -> str:
+        async with aiohttp.ClientSession() as session:
+            async with session.get("http://example.com") as response:
+                return await response.text()
+
+    @DBOS.workflow()
+    async def test_workflow(x: int) -> str:
+        return await test_step(x)
+
+    assert len(await test_workflow(1)) > 0
+    handle = DBOS.start_workflow(test_workflow, 1)
+    assert len(handle.get_result()) > 1
