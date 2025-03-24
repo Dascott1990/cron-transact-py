@@ -1,81 +1,81 @@
 <div align="center">
 
-# Dascott Task Manager: Reliable & Efficient Workflow Automation
+# Task Scheduler: A Lightweight, Reliable Execution System
 
-#### [Documentation](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Examples](#) &nbsp;&nbsp;•&nbsp;&nbsp; [GitHub](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Community](#)
+#### [Documentation](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Twitter](dascott0) &nbsp;&nbsp;•&nbsp;&nbsp; [GitHub](dascott1990) &nbsp;&nbsp;•&nbsp;&nbsp; [Community](#)
 </div>
 
 ---
 
-Dascott Task Manager is a **lightweight, self-sufficient task automation system** designed for seamless execution and recovery of critical workflows.
+This Task Scheduler is a robust system for **automating and managing scheduled tasks**.
 
-### Key Features:
-
-- Automate scheduled jobs with zero manual intervention.
-- Ensure **fault-tolerant execution** for critical workflows.
-- Manage distributed, long-running tasks with **automatic recovery**.
-- Simple, self-contained, and **easy to integrate**.
-
-## Example Usage
+For example:
 
 ```python
-@task_manager.task()
+@scheduler.task()
 def job_one():
     ...
 
-@task_manager.task()
+@scheduler.task()
 def job_two():
     ...
 
-@task_manager.workflow()
-def automated_process():
+@scheduler.workflow()
+def daily_routine():
     job_one()
     job_two()
 ```
 
-If interrupted, tasks **resume automatically** from the last successful step.
+This ensures tasks are **resilient and automatically recover** if interrupted or fail. Perfect for:
+
+- Running scheduled jobs without manual intervention.
+- Automating background tasks and workflows.
+- Ensuring fault-tolerant execution of critical processes.
+- Managing distributed or long-running tasks efficiently.
+
+Unlike bulky third-party services, this system is **lightweight, self-contained, and works out-of-the-box** with minimal setup.
 
 ## Getting Started
 
 Install and configure:
 
 ```shell
-python3 -m venv dascott-env
-cd dascott-env
+python3 -m venv scheduler-env
+cd scheduler-env
 source .venv/bin/activate
-pip install dascott-manager
-task-manager init --config
+pip install task-scheduler
+scheduler init --config
 ```
 
-Run a simple workflow:
+Example usage:
 
 ```python
 from fastapi import FastAPI
-from dascott_manager import TaskManager
+from task_scheduler import Scheduler
 
 app = FastAPI()
-task_manager = TaskManager(fastapi=app)
+scheduler = Scheduler(fastapi=app)
 
-@task_manager.task()
-def morning_routine():
-    print("Morning routine executed!")
+@scheduler.task()
+def morning_task():
+    print("Morning task executed!")
 
-@task_manager.task()
-def night_routine():
-    print("Night routine executed!")
+@scheduler.task()
+def evening_task():
+    print("Evening task executed!")
 
-@task_manager.workflow()
-def daily_tasks():
-    morning_routine()
-    task_manager.sleep(3600)
-    night_routine()
+@scheduler.workflow()
+def daily_routine():
+    morning_task()
+    scheduler.sleep(3600)
+    evening_task()
 
 @app.get("/")
 def trigger():
-    daily_tasks()
+    daily_routine()
 ```
 
-Save as `main.py` and start it. Visit `localhost:8000` to initiate the workflow. If interrupted, restart and it **resumes automatically**.
+Save as `main.py` and run it. Access `localhost:8000` to start the scheduler. If interrupted, restart and it will **resume** from where it left off.
 
 ## Documentation
 
@@ -84,14 +84,14 @@ Save as `main.py` and start it. Visit `localhost:8000` to initiate the workflow.
 ## Examples
 
 - **Automated Reports** &mdash; Generate and send reports daily.
-- **Recurring Alerts** &mdash; Schedule notifications and reminders.
-- **Database Maintenance** &mdash; Periodically clean or sync data sources.
+- **Recurring Notifications** &mdash; Schedule messages or reminders.
+- **Data Sync & Cleanup** &mdash; Periodically clean databases or sync data sources.
 
 ## Community
 
-Join discussions, contribute, or report issues on [GitHub](#) and [Community](#).
+Join the discussion, contribute, or report issues on [GitHub](#) and [Community](#).
 
 ---
 
-Built by Dascott for **efficiency, automation, and reliability** in task execution.
+Ensuring **efficiency, resilience, and automation** for your scheduled tasks.
 
