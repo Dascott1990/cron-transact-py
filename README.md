@@ -2,7 +2,7 @@
 
 # Task Scheduler: A Lightweight, Reliable Execution System
 
-#### [Documentation](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Twitter](dascott0) &nbsp;&nbsp;•&nbsp;&nbsp; [GitHub](dascott1990) &nbsp;&nbsp;•&nbsp;&nbsp; [Community](#)
+#### [Documentation](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Twitter](#) &nbsp;&nbsp;•&nbsp;&nbsp; [GitHub](#) &nbsp;&nbsp;•&nbsp;&nbsp; [Community](#)
 </div>
 
 ---
